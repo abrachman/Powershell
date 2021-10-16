@@ -1,0 +1,15 @@
+Print all files in directory with details. From https://code.adonline.id.au/script-to-list-image-files-by-size-and-resolution-export-to-excel/
+  
+    [void] [System.Reflection.Assembly]::LoadWithPartialName(“System.Drawing”)
+    Get-ChildItem -Recurse c:\users\andrewb\Downloads -Filter *.jpg | % {
+    $image = [System.Drawing.Image]::FromFile($_.FullName)
+    if ($image.width -gt 5 -and $image.height -gt 5) {
+        New-Object PSObject -Property @{
+		height_pixels = $image.Height
+		width_pixels = $image.Width
+		horizontal_resolution = $image.HorizontalResolution
+		vertical_resolution = $image.VerticalResolution
+		fullname = $_.Fullname
+        }
+    }
+    } | Export-Csv 'c:\Users\andrewb\Downloads\img.csv' -NoTypeInformation

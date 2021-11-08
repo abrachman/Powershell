@@ -1,5 +1,7 @@
 Print all files in directory with details. From https://code.adonline.id.au/script-to-list-image-files-by-size-and-resolution-export-to-excel/
   
+RUNS OUT OF MEMORY OVER 700 RECORDS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
+  
 [void] [System.Reflection.Assembly]::LoadWithPartialName(“System.Drawing”)
     Get-ChildItem -Recurse -path T:\Aerials2\County\42* -Filter *.jpg | % {
     $image = [System.Drawing.Image]::FromFile($_.FullName)
